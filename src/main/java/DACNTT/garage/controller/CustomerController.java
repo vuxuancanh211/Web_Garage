@@ -27,7 +27,7 @@ public class CustomerController {
         return customerHandle.getAllCustomers();
     }
 
-    @PostMapping
+    @PostMapping("/admin/customers")
     public ResponseEntity<CustomerDTO> createCustomer(@RequestBody CustomerDTO customerDTO) {
         return customerHandle.createCustomer(customerDTO);
     }

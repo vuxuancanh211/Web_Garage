@@ -77,4 +77,5 @@ public class BookingController {
     public ResponseEntity<?> deleteBooking(@PathVariable String maLich) {
         return bookingHandle.deleteBooking(maLich);
     }
+
 }

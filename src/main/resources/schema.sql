@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS "PhanHoi" (
 -- BẢNG BÁO CÁO
 -- ===============================
 CREATE TABLE IF NOT EXISTS "BaoCao" (
-    "maBC" VARCHAR(10) PRIMARY KEY,
+    "maBC" VARCHAR(20) PRIMARY KEY,
     "maChiNhanh" VARCHAR(10),
     "thangNam" VARCHAR(10),
     "doanhThu" NUMERIC(14,2),
@@ -178,13 +178,12 @@ CREATE TABLE IF NOT EXISTS "ThongTinDichVu" (
     "description" TEXT,
     "content" TEXT NOT NULL,
     "category" VARCHAR(100),
-    "embedding" vector(768),
+    "embedding" vector(3072),
     "created_at" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP
 );
 
-CREATE INDEX IF NOT EXISTS embedding_idx ON "ThongTinDichVu"
-    USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);
+
 
 CREATE INDEX IF NOT EXISTS title_content_idx ON "ThongTinDichVu"
     USING gin(to_tsvector('english', title || ' ' || content));

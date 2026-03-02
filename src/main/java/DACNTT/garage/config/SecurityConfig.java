@@ -50,6 +50,15 @@ public class SecurityConfig {
                         // cho phép GET parts + services nếu bạn muốn xem public
                         .requestMatchers(HttpMethod.GET, "/admin/parts/**", "/admin/services/**").permitAll()
 
+                        .requestMatchers(HttpMethod.GET, "/admin/repairs/**").hasAnyRole("ADMIN", "EMPLOYEE")
+                        .requestMatchers(HttpMethod.GET, "/admin/bookings/**").hasAnyRole("ADMIN", "EMPLOYEE")
+                        .requestMatchers(HttpMethod.GET, "/admin/customers/**").hasAnyRole("ADMIN", "EMPLOYEE")
+                        .requestMatchers(HttpMethod.GET, "/admin/vehicles/**").hasAnyRole("ADMIN", "EMPLOYEE")
+
+                        // Nhân viên được cập nhật trạng thái phiếu sửa chữa
+                        .requestMatchers(HttpMethod.PATCH, "/admin/repairs/**").hasAnyRole("ADMIN", "EMPLOYEE")
+                        .requestMatchers(HttpMethod.POST, "/admin/repairs/**").hasAnyRole("ADMIN", "EMPLOYEE")
+
                         // các route admin còn lại → phải ADMIN
                         .requestMatchers("/admin/**").hasRole("ADMIN")
 

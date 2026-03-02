@@ -37,8 +37,7 @@ public class BranchHandle {
 
     public ResponseEntity<BranchDTO> updateBranch(String maChiNhanh, BranchDTO dto) {
         Branch branch = branchMapper.toEntity(dto);
-        branch.setMaChiNhanh(maChiNhanh);
-        Branch updated = branchService.save(branch);
+        Branch updated = branchService.update(maChiNhanh, branch);
         return ResponseEntity.ok(branchMapper.toBranchDTO(updated));
     }
 

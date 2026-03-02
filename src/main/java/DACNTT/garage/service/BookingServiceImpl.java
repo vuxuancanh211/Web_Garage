@@ -28,14 +28,6 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @Autowired
-    private VehicleRepository vehicleRepository;
-
-    @Override
-    public List<Booking> getAllBookings() {
-        return bookingRepository.findAll();
-    }
-
     @Override
     public Booking addBooking(Booking booking) {
         if (booking.getMaLich() == null || booking.getMaLich().trim().isEmpty()) {
@@ -148,9 +140,8 @@ public class BookingServiceImpl implements BookingService {
             if (search != null && !search.isBlank()) {
                 String pattern = "%" + search.trim().toLowerCase() + "%";
                 predicates.add(cb.or(
-                        cb.like(cb.lower(root.get("xe").get("bienSo")), pattern),
-                        cb.like(cb.lower(root.get("khachHang").get("tenKH")), pattern),
-                        cb.like(root.get("khachHang").get("soDienThoai"), pattern)
+                        cb.like(cb.lower(root.get("khachHang").get("hoTen")), pattern),
+                        cb.like(root.get("khachHang").get("sdt"), pattern)
                 ));
             }
 

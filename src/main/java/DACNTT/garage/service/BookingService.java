@@ -16,7 +16,6 @@ public interface BookingService {
             String loaiDichVu,
             Pageable pageable
     );
-    List<Booking> getAllBookings();
     Booking addBooking(Booking booking);
     Booking addBookingCustomer(Booking booking);
     Booking updateBooking(String maLich, BookingDTO dto);

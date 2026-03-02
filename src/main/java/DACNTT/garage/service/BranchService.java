@@ -15,4 +15,6 @@ public interface BranchService {
     Branch save(Branch branch);
 
     void deleteById(String maChiNhanh);
+
+    Branch update(String maChiNhanh, Branch branch);
 }

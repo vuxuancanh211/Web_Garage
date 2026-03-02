@@ -25,14 +25,6 @@ public class BookingHandle {
     @Autowired
     private BookingMapper bookingMapper;
 
-    public ResponseEntity<List<BookingDTO>> getAllBookings() {
-        List<Booking> bookings = bookingService.getAllBookings();
-        List<BookingDTO> bookingDTOs = new ArrayList<>();
-        for (Booking booking : bookings) {
-            bookingDTOs.add(bookingMapper.toBookingDTO(booking));
-        }
-        return ResponseEntity.ok(bookingDTOs);
-    }
 
     public ResponseEntity<?> addBooking(BookingDTO bookingDTO) {
         try {

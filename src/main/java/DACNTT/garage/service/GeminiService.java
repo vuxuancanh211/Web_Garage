@@ -27,7 +27,7 @@ public class GeminiService {
     private final ObjectMapper objectMapper;
     private final WebClient webClient;
 
-    private static final int EMBEDDING_DIMENSION = 768;
+    private static final int EMBEDDING_DIMENSION = 3072;
     private static final int MAX_CONCURRENT_REQUESTS = 5;
 
     private final Semaphore rateLimiter = new Semaphore(MAX_CONCURRENT_REQUESTS);
@@ -63,7 +63,7 @@ public class GeminiService {
     }
 
     public Mono<float[]> generateEmbeddingAsync(String text) {
-        String url = "/text-embedding-004:embedContent?key=" + geminiConfig.getApiKey();
+        String url = "/gemini-embedding-001:embedContent?key=" + geminiConfig.getApiKey();
         Map<String, Object> request = buildEmbeddingRequest(text);
 
         return webClient.post()

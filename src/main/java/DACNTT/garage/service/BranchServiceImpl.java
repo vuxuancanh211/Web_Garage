@@ -68,4 +68,17 @@ public class BranchServiceImpl implements BranchService {
         }
         branchRepository.deleteById(maChiNhanh);
     }
+
+    @Override
+    public Branch update(String maChiNhanh, Branch branch) {
+        Branch existing = branchRepository.findById(maChiNhanh)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy chi nhánh: " + maChiNhanh));
+
+        existing.setTenChiNhanh(branch.getTenChiNhanh());
+        existing.setDiaChi(branch.getDiaChi());
+        existing.setSdt(branch.getSdt());
+        existing.setEmail(branch.getEmail());
+
+        return branchRepository.save(existing);
+    }
 }

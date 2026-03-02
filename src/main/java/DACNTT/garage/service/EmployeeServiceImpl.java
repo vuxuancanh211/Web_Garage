@@ -42,6 +42,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         // 2. Chuyển DTO sang Entity (mapper sẽ bỏ qua role và chiNhanh)
         Employee employee = employeeMapper.toEmployee(dto);
 
+        if (dto.getMatKhau() != null && !dto.getMatKhau().isBlank()) {
+            employee.setMatKhau(passwordEncoder.encode(dto.getMatKhau()));
+        }
+
         // 3. Map vaiTro tiếng Việt → Role enum (thủ công vì DTO không có role)
         employee.setRole(mapVaiTroToRole(dto.getVaiTro()));
 
@@ -84,7 +88,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return switch (vaiTro.trim()) {
             case "Quản trị viên" -> Role.ROLE_ADMIN;
-            case "Quản lý" -> Role.ROLE_MANAGER;
+//            case "Quản lý" -> Role.ROLE_MANAGER;
             case "Kỹ thuật viên", "Lễ tân" -> Role.ROLE_EMPLOYEE;
             default -> Role.ROLE_EMPLOYEE;
         };

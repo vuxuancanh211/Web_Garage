@@ -134,10 +134,7 @@ public class RepairHandle {
 
     public ResponseEntity<RepairDTO> updateRepair(String maPhieu, RepairDTO dto) {
         try {
-            if (!maPhieu.equals(dto.getMaPhieu())) {
-                return ResponseEntity.badRequest().build();
-            }
-
+            dto.setMaPhieu(maPhieu);
             Repair repair = repairMapper.toRepair(dto);
             Repair updated = repairService.update(maPhieu, repair);
             return ResponseEntity.ok(repairMapper.toRepairDTO(updated));
