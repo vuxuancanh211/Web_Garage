@@ -18,9 +18,6 @@ import ReportManager from "./admin/ReportManager";
 import BranchManager from "./admin/BranchManager";
 import FeedbackManager from "./admin/FeedbackManager";
 
-import PaymentSuccess from "./payment/PaymentSuccess";
-import PaymentFailed from "./payment/PaymentFailed";
-
 import Services from "./customer/Services";
 import Parts from "./customer/Parts";
 import CustomerLayout from "./customer/CustomerLayout"; 
@@ -54,9 +51,6 @@ export default function App() {
         <Route path="/my-repairs" element={<CustomerLayout><MyRepairs /></CustomerLayout>} />
         <Route path="/customer/repairParts/:maPhieu" element={<CustomerLayout><RepairDetail /></CustomerLayout>} />
 
-        {/* Payment Routes */}
-        <Route path="/payment/success" element={<PaymentSuccess />} />
-        <Route path="/payment/failed" element={<PaymentFailed />} />
 
         {/* ĐĂNG NHẬP ADMIN – TRUY CẬP TRỰC TIẾP ĐƯỢC */}
         <Route path="/login" element={<AdminLogin />} />
