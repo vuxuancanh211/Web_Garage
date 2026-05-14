@@ -81,6 +81,10 @@ docker-compose up -d
 
 Application
 ```bash
+Find application.properties
+Modify init sql mode from never to always
+```
+```bash
 cd ..
 mvn clean package
 java "-Duser.timezone=Asia/Ho_Chi_Minh" -jar target\garage-0.0.1-SNAPSHOT.jar
